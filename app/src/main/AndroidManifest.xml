@@ -17,13 +17,13 @@
         </activity>
         <activity android:name=".paging.PagingActivity">
         </activity>
-        <activity android:name=".SignatureActivity"/>
-        <activity android:name=".ExifActivity"/>
-        <activity android:name=".CropActivity"/>
+        <activity android:name=".signature.SignatureActivity"/>
+        <activity android:name=".exif.ExifActivity"/>
+        <activity android:name=".crop.CropActivity"/>
         <activity
-                android:name=".RulerActivity"
+                android:name=".ruler.RulerActivity"
                 android:screenOrientation="landscape"/>
-        <activity android:name=".RecyclerActivity"/>
+        <activity android:name=".recycler.RecyclerActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

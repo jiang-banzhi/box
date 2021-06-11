@@ -261,7 +261,8 @@
                 android:text="custom"/>
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
-    <jy.tool.box.RulerView android:layout_width="match_parent"
+    <jy.tool.box.ruler.RulerView
+            android:layout_width="match_parent"
                            android:layout_height="0dp"
                            android:id="@+id/rulerView"
                            app:layout_constraintLeft_toLeftOf="parent"

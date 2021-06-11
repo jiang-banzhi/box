@@ -6,7 +6,7 @@
 
         <variable
                 name="info"
-                type="jy.tool.box.RecyclerItemViewModel"/>
+                type="jy.tool.box.recycler.RecyclerItemViewModel"/>
     </data>
 
     <LinearLayout

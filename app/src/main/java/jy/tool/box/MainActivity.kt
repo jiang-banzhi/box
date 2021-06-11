@@ -1,6 +1,5 @@
 package jy.tool.box
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,11 +12,9 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.RelativeCornerSize
 import com.google.android.material.shape.ShapeAppearanceModel
-import jy.tool.box.databinding.ActivityCropBinding
+import jy.tool.box.crop.CropActivity
 import jy.tool.box.databinding.ActivityMainBinding
 import jy.tool.box.matrix.MatrixActivity
-import jy.tool.box.paging.PagingActivity
-import kotlin.contracts.contract
 
 /**
  * https://blog.csdn.net/magic0908/article/details/101029876

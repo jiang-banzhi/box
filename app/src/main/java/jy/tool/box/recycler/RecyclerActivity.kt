@@ -1,8 +1,7 @@
-package jy.tool.box
+package jy.tool.box.recycler
 
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.junfa.growthcompass.terminal.base.BaseActivity
+import jy.tool.box.BR
+import jy.tool.box.R
 import jy.tool.box.databinding.ActivityRecyclerBinding
 import jy.tool.library.base.ItemBinding
 import jy.tool.library.base.MulteItemBinding
-import jy.tool.library.base.RecyclerViewBindAdapter
 import jy.tool.library.base.RecyclerViewBindingAdapter
 
 class RecyclerActivity : BaseActivity<ActivityRecyclerBinding, RecyclerViewModel>() {

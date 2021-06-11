@@ -1,7 +1,9 @@
-package jy.tool.box
+package jy.tool.box.recycler
 
 import android.app.Application
 import com.junfa.growthcompass.terminal.base.BaseViewModel
+import jy.tool.box.BR
+import jy.tool.box.R
 import jy.tool.library.base.ItemBinding
 import jy.tool.library.base.MulteItemBinding
 

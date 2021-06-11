@@ -1,4 +1,4 @@
-package jy.tool.box
+package jy.tool.box.exif
 
 import android.annotation.TargetApi
 import android.app.Activity

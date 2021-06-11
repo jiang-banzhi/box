@@ -1,4 +1,4 @@
-package jy.tool.box;
+package jy.tool.box.recycler;
 
 import androidx.databinding.ObservableField;
 import com.junfa.growthcompass.terminal.base.BaseViewModel;

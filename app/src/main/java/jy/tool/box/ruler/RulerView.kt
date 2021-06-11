@@ -1,4 +1,4 @@
-package jy.tool.box
+package jy.tool.box.ruler
 
 import android.content.Context
 import android.graphics.Canvas

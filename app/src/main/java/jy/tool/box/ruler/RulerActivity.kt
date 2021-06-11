@@ -1,7 +1,8 @@
-package jy.tool.box
+package jy.tool.box.ruler
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import jy.tool.box.R
 
 class RulerActivity : AppCompatActivity() {
 

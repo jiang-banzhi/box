@@ -1,7 +1,9 @@
-package jy.tool.box;
+package jy.tool.box.crop;
 
 import android.graphics.RectF;
 import androidx.annotation.NonNull;
+
+import jy.tool.box.crop.Edge;
 
 /**
  * <pre>

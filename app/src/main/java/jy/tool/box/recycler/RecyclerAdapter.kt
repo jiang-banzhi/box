@@ -1,4 +1,4 @@
-package jy.tool.box
+package jy.tool.box.recycler
 
 import jy.tool.library.base.RecyclerViewBindingAdapter
 
