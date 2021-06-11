@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">box</string>
+    <array name="initial_slider_values">
+        <item>2.0</item>
+        <item>70.0</item>
+    </array>
+</resources>

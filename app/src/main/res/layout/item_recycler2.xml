@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+        <import type="android.text.Html"/>
+
+        <variable
+                name="info"
+                type="jy.tool.box.RecyclerItemViewModel"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/img1"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:padding="6dp"
+                  android:text="@{info.getArticle()}"
+                  android:gravity="center"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:padding="6dp"
+                  android:text="类型2"
+                  android:gravity="center"/>
+    </LinearLayout>
+
+</layout>
