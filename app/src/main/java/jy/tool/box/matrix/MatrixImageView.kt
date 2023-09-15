@@ -21,7 +21,7 @@ import kotlin.math.sqrt
  *<pre>
  * @author : jiang
  * @time : 2021/5/6.
- * @desciption :
+ * @desciption : 查看图片 支持放大缩小
  * @version :
  *</pre>
  */

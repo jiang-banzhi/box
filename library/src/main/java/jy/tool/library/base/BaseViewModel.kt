@@ -6,7 +6,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Lifecycle
-import jy.tool.library.event.SingleLiveEvent
+import androidx.lifecycle.viewModelScope
+import jy.tool.library.event.SingleLiveData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
 /**
@@ -21,13 +25,13 @@ open abstract class BaseViewModel(application: Application) : AndroidViewModel(a
     @SuppressLint("StaticFieldLeak")
     var lifecycle: Lifecycle? = null
 
-    val startActivityEvent: SingleLiveEvent<MutableMap<String, Any?>> by lazy {
-        SingleLiveEvent<MutableMap<String, Any?>>()
+    val startActivityData: SingleLiveData<MutableMap<String, Any?>> by lazy {
+        SingleLiveData<MutableMap<String, Any?>>()
     }
-    val showDialogEvent: SingleLiveEvent<String?> by lazy { SingleLiveEvent<String?>() }
-    val dismissDialogEvent: SingleLiveEvent<Void> by lazy { SingleLiveEvent<Void>() }
-    val onbackpressDialogEvent: SingleLiveEvent<Void> by lazy { SingleLiveEvent<Void>() }
-    val clickEvent: SingleLiveEvent<View> by lazy { SingleLiveEvent<View>() }
+    val showDialogData: SingleLiveData<String?> by lazy { SingleLiveData<String?>() }
+    val dismissDialogData: SingleLiveData<Void> by lazy { SingleLiveData<Void>() }
+    val onbackpressDialogData: SingleLiveData<Void> by lazy { SingleLiveData<Void>() }
+    val clickData: SingleLiveData<View> by lazy { SingleLiveData<View>() }
 
     /**
      * 跳转页面
@@ -50,23 +54,40 @@ open abstract class BaseViewModel(application: Application) : AndroidViewModel(a
         if (bundle != null) {
             params[ParameterField.BUNDLE] = bundle
         }
-        startActivityEvent.postValue(params)
+        startActivityData.postValue(params)
     }
 
     fun showDialog(title: String?) {
-        showDialogEvent.postValue(title)
+        showDialogData.postValue(title)
     }
 
     fun dismissDialog() {
-        dismissDialogEvent.call()
+        dismissDialogData.call()
     }
 
     fun onbackPress() {
-        onbackpressDialogEvent.call()
+        onbackpressDialogData.call()
     }
 
     fun click(view: View) {
-        clickEvent.postValue(view)
+        clickData.postValue(view)
+    }
+
+
+    fun launch(
+        block: suspend () -> Unit,
+        error: suspend (Throwable) -> Unit,
+        complete: suspend () -> Unit
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                block()
+            } catch (e: Exception) {
+                error(e)
+            } finally {
+                complete()
+            }
+        }
     }
 
 

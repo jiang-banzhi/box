@@ -12,9 +12,14 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.RelativeCornerSize
 import com.google.android.material.shape.ShapeAppearanceModel
-import jy.tool.box.crop.CropActivity
 import jy.tool.box.databinding.ActivityMainBinding
 import jy.tool.box.matrix.MatrixActivity
+import jy.tool.box.menu.MenuActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 
 /**
  * https://blog.csdn.net/magic0908/article/details/101029876
@@ -23,7 +28,6 @@ import jy.tool.box.matrix.MatrixActivity
  * https://blog.csdn.net/weixin_42046829/article/details/110220160 ==>SwitchMaterial、Chip、ChipGroup
  * */
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
@@ -58,38 +62,54 @@ class MainActivity : AppCompatActivity() {
         ) {
             Log.e("registerForActivityResult", it)
         }
-       val lau2= registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-
+        val lau2 = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            Log.e("RequestPermission", "$it")
         }
         binding.toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
             Log.e("toggleGroup", "======>$isChecked--${findViewById<Button>(checkedId).text}")
 //            startActivity(Intent(this@MainActivity, RecyclerActivity::class.java))
 //            startActivity(Intent(this@MainActivity, RulerActivity::class.java))
-            startActivity(Intent(this@MainActivity, CropActivity::class.java))
+//            startActivity(Intent(this@MainActivity, CropActivity::class.java))
 //            startActivity(Intent(this@MainActivity, ExifActivity::class.java))
 //            startActivity(Intent(this@MainActivity, SignatureActivity::class.java))
 //            startActivity(Intent(this@MainActivity, PagingActivity::class.java))
 //            startActivity(Intent(this@MainActivity, MatrixActivity::class.java))
+//            startActivity(Intent(this@MainActivity, ClipActivity::class.java))
+//            startActivity(Intent(this@MainActivity, CoinActivity::class.java))
 //            lau.launch("toggleGroup")
-//            lau2.launch(Manifest.permission.CAMERA)
+//            lau2.launch(Manifest.permission.REQUEST_INSTALL_PACKAGES)
+//            startActivity(Intent(this@MainActivity, DownloadActivity::class.java))
+            startActivity(Intent(this@MainActivity, MenuActivity::class.java))
+
         }
 
     }
 
+
+
+
+
     inner class Contract : ActivityResultContract<String, String>() {
         override fun createIntent(context: Context, input: String?): Intent {
             val intent = Intent(Intent(this@MainActivity, MatrixActivity::class.java))
-            intent.putExtra("createIntent", "createIntent${input}")
+            intent.putExtra("lau  createIntent", "createIntent${input}")
             return intent
         }
 
         override fun parseResult(resultCode: Int, intent: Intent?): String {
             val stringExtra = intent?.getStringExtra("result") ?: "default"
-            Log.e("parseResult", "stringExtra")
+            Log.e("lau parseResult", "$stringExtra")
             return stringExtra
         }
 
     }
 
 
+    private fun testCon(block: (String?) -> Unit) {
+        GlobalScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                block("testCon")
+            }
+        }
+    }
 }

@@ -3,5 +3,6 @@ apply from:'../dependencies.gradle'
 
 
 dependencies {
-    api 'com.github.jiang-banzhi:RxHttp:2.0.1'
+    api 'com.github.jiang-banzhi:RxHttp:2.0.3'
+
 }

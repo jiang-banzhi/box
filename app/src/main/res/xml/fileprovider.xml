@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resource>
+    <paths>
+        <files-path
+            name="files_path"
+            path="" /><!--内部存储空间应用私有目录下的 files/ 目录，等同于 Context.getFilesDir() 所获取的目录路径-->
+        <cache-path
+            name="cache_path"
+            path="" /> <!--内部存储空间应用私有目录下的 cache/ 目录，等同于 Context.getCacheDir() 所获取的目录路径；-->
+        <external-path
+            name="external_path"
+            path="" /><!--外部存储空间根目录，等同于 Environment.getExternalStorageDirectory() 所获取的目录路径-->
+        <external-files-path
+            name="external_files_path"
+            path="" /><!--外部存储空间应用私有目录下的files/ 目录，等同于 Context.getExternalFilesDir(null) 所获取的目录路径；-->
+        <external-cache-path
+            name="external_cache_path"
+            path="" /> <!--外部存储空间应用私有目录下的 cache/ 目录，等同于 Context.getExternalCacheDir()；-->
+
+        <!-- /storage/emulated/0/Download/${applicationId}/.beta/apk-->
+        <external-path
+            name="beta_external_path"
+            path="Download/" />
+        <!--/storage/emulated/0/Android/data/${applicationId}/files/apk/-->
+        <external-path
+            name="beta_external_files_path"
+            path="Android/data/" />
+    </paths>
+
+</resource>

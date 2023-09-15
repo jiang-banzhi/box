@@ -31,7 +31,6 @@ class RecyclerViewModel(application: Application) : BaseViewModel(application) {
 
     init {
         getDatas()
-
     }
 
     fun getDatas() {

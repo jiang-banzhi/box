@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activityResultLauncher.ActivityResultLauncherActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:id="@+id/takePhoto"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="拍照"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:id="@+id/takePhotoCrop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="拍照裁剪"
+            app:layout_constraintTop_toBottomOf="@id/takePhoto"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:id="@+id/pickPhoto"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="选择"
+            app:layout_constraintTop_toBottomOf="@id/takePhotoCrop"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content" />
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:id="@+id/pickPhotoCrop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="选择裁剪"
+            app:layout_constraintTop_toBottomOf="@id/pickPhoto"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/ivImage"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pickPhotoCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="0dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

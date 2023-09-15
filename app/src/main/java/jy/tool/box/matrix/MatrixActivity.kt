@@ -14,7 +14,7 @@ class MatrixActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMatrixBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.e("GlobalLayout==>", "${intent?.getStringExtra("createIntent")}")
+        Log.e("lau==>", "${intent?.getStringExtra("createIntent")}")
         binding.imageView.viewTreeObserver.addOnGlobalLayoutListener {
             Log.e("GlobalLayout==", "viewTreeObserver")
         }

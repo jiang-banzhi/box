@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="jy.tool.box">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="jy.tool.box">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 网络通信权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- SD卡写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- SD卡创建与删除权限 -->
+    <uses-permission
+            android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+            tools:ignore="ProtectedPermissions" /> <!-- VISIBILITY_HIDDEN表示不显示任何通知栏提示的权限 -->
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" /> <!-- DownloadManager -->
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission
+            android:name="android.permission.INSTALL_PACKAGES"
+            tools:ignore="ProtectedPermissions" />
+
+    <uses-feature
+            android:name="android.hardware.nfc"
+            android:required="true" />
+
+    <uses-permission android:name="android.permission.NFC" />
 
     <application
             android:allowBackup="true"
@@ -13,24 +30,59 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".matrix.MatrixActivity">
-        </activity>
-        <activity android:name=".paging.PagingActivity">
-        </activity>
-        <activity android:name=".signature.SignatureActivity"/>
-        <activity android:name=".exif.ExifActivity"/>
-        <activity android:name=".crop.CropActivity"/>
         <activity
-                android:name=".ruler.RulerActivity"
-                android:screenOrientation="landscape"/>
-        <activity android:name=".recycler.RecyclerActivity"/>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                android:name=".tablayout.TabLayoutActivity"
+                android:exported="false" />
+        <activity android:name=".detection.FaceTrackingActivity" />
+        <activity android:name=".detection.DetectionActivity" />
+        <activity android:name=".face.FaceDetectionMlkitActivity" />
+        <activity android:name=".qrcode.QRCodeActivity" />
+        <activity android:name=".activityResultLauncher.ActivityResultLauncherActivity" />
+        <activity android:name=".menu.MenuActivity" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+        <service android:name=".download.DownloadService" />
+
+        <activity android:name=".download.DownloadActivity" />
+        <activity android:name=".nfc.NFCActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <action android:name="android.nfc.action.ACTION_NDEF_DISCOVERED" />
+                <action android:name="android.nfc.action.ACTION_TECH_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
+        <activity android:name=".coin.CoinActivity" />
+        <activity android:name=".clip.ClipActivity" />
+        <activity android:name=".matrix.MatrixActivity" />
+        <activity android:name=".paging.PagingActivity" />
+        <activity android:name=".signature.SignatureActivity" />
+        <activity android:name=".exif.ExifActivity" />
+        <activity android:name=".crop.CropActivity" />
+        <activity
+                android:name=".ruler.RulerActivity"
+                android:screenOrientation="landscape" />
+        <activity android:name=".recycler.RecyclerActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".camera.PreviewActivity" />
+
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="jy.tool.box.fileProvider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/fileprovider" />
+        </provider>
     </application>
 
 </manifest>

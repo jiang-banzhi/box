@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:clipChildren="false"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorAccent"
+            android:padding="12dp"
+            android:layout_height="wrap_content">
+
+        <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_margin="1dp"
+                android:minHeight="16dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progress="20"
+                android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:gravity="center_horizontal"
+            android:background="@android:color/holo_blue_light"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_gravity="bottom" />
+    </LinearLayout>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorAccent"
+            android:padding="12dp"
+            android:layout_height="wrap_content">
+
+        <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_margin="1dp"
+                android:minHeight="16dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progress="20"
+                android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            app:tabIndicatorHeight="0dp"
+            android:background="@android:color/holo_blue_light"
+            android:layout_height="68dp">
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+
+</LinearLayout>

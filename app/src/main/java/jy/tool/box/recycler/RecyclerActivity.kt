@@ -76,7 +76,7 @@ class RecyclerActivity : BaseActivity<ActivityRecyclerBinding, RecyclerViewModel
                 }
 
             })
-//            mAdapter.setLayoutId(R.layout.item_recycler)
+            mAdapter.setLayoutId(R.layout.item_recycler)
             adapter = mAdapter
         }
 //        bottomAdapter = RecyclerViewBindingAdapter<RecyclerItemViewModel>()
@@ -112,7 +112,7 @@ class RecyclerActivity : BaseActivity<ActivityRecyclerBinding, RecyclerViewModel
             }
 
         }
-        binding.lookup = value
+//        binding.lookup = value
         binding.adapter = bottomAdapter
     }
 

@@ -21,11 +21,13 @@ import java.lang.reflect.ParameterizedType
  * @version :
  *</pre>
  */
- open abstract class BaseActivity<T : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity(), View.OnClickListener {
+open abstract class BaseActivity<T : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity(),
+    View.OnClickListener {
 
     protected lateinit var binding: T
     protected var viewModel: VM? = null
     private var viewModelId: Int = 0
+
     override
     fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,22 +41,22 @@ import java.lang.reflect.ParameterizedType
 
     private fun registorUIChangeLiveDataCallBack() {
         (viewModel as BaseViewModel).lifecycle = lifecycle
-        (viewModel as BaseViewModel).startActivityEvent.observe(this,
+        (viewModel as BaseViewModel).startActivityData.observe(this,
             Observer {
                 val clz = it[BaseViewModel.ParameterField.CLASS] as Class<*>
                 val bundle = it[BaseViewModel.ParameterField.BUNDLE] as Bundle?
                 startActivity(clz, bundle)
             })
-        (viewModel as BaseViewModel).showDialogEvent.observe(this, Observer {
+        (viewModel as BaseViewModel).showDialogData.observe(this, Observer {
             showDialog(it)
         })
-        (viewModel as BaseViewModel).dismissDialogEvent.observe(this, Observer {
+        (viewModel as BaseViewModel).dismissDialogData.observe(this, Observer {
             dismissDialog()
         })
-        (viewModel as BaseViewModel).onbackpressDialogEvent.observe(this, Observer {
+        (viewModel as BaseViewModel).onbackpressDialogData.observe(this, Observer {
             onBackPressed()
         })
-        (viewModel as BaseViewModel).clickEvent.observe(this, Observer {
+        (viewModel as BaseViewModel).clickData.observe(this, Observer {
             processClick(it)
         })
     }
@@ -128,6 +130,10 @@ import java.lang.reflect.ParameterizedType
 
     abstract fun initContentView(savedInstanceState: Bundle?): Int
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding?.unbind()
+    }
 
     /**
      * 初始viewmode id

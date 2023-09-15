@@ -11,13 +11,18 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  *<pre>
- * @author : jiang
- * @time : 2020/11/4.
- * @desciption :
- * @version :
- *</pre>
+ *注册订阅
+ *LiveDataBus.get()
+ *.with("key_test", String.class)
+ *.observe(this, new Observer<String>() {
+ *@Override
+ *public void onChanged(@Nullable String s) {
+ *}
+ *});
+ *发送消息：
+ *LiveDataBus.get().with("key_test").setValue(s);
  */
-class SingleLiveEvent<T> : MutableLiveData<T>() {
+class SingleLiveData<T> : MutableLiveData<T>() {
 
     private val mPending = AtomicBoolean(false)
 

@@ -61,7 +61,10 @@ open class RecyclerViewBindingAdapter<T> : RecyclerView.Adapter<RecyclerView.Vie
                         if (isFixedViewType(type))
                             layoutManager.spanCount
                         else
-                            mSpanSizeLookup!!.getSpanSize(layoutManager, position - getHeaderLayoutCount())
+                            mSpanSizeLookup!!.getSpanSize(
+                                layoutManager,
+                                position - getHeaderLayoutCount()
+                            )
                     }
                 }
             }
@@ -120,6 +123,7 @@ open class RecyclerViewBindingAdapter<T> : RecyclerView.Adapter<RecyclerView.Vie
     }
 
     fun addHeadView(headView: View?, index: Int, orientation: Int): Int {
+        if (headView == null) return -1
         var index = index
         if (mHeadLayout == null) {
             if (orientation == LinearLayout.VERTICAL) {
@@ -212,6 +216,7 @@ open class RecyclerViewBindingAdapter<T> : RecyclerView.Adapter<RecyclerView.Vie
     }
 
     fun addFootView(footView: View?, index: Int, orientation: Int): Int {
+        if (footView == null) return -1
         var index = index
         if (mFootlayout == null) {
             if (orientation == LinearLayout.VERTICAL) {
@@ -292,7 +297,7 @@ open class RecyclerViewBindingAdapter<T> : RecyclerView.Adapter<RecyclerView.Vie
 
 
     fun setEmptyView(emptyView: View?) {
-        if (emptyView==null){
+        if (emptyView == null) {
             return
         }
         if (mEmptyLayout == null) {
@@ -336,7 +341,11 @@ open class RecyclerViewBindingAdapter<T> : RecyclerView.Adapter<RecyclerView.Vie
                 holder = BindingViewHolder(mEmptyLayout as View)
             }
             else -> {
-                val binding = onCreateBinding(inflater!!, itemBindings!!.getItemBinding(viewType).layoutRes(), parent)
+                val binding = onCreateBinding(
+                    inflater!!,
+                    itemBindings!!.getItemBinding(viewType).layoutRes(),
+                    parent
+                )
                 holder = onCreateViewHolder(binding)
                 bindViewClickListener(holder)
                 binding.addOnRebindCallback(object : OnRebindCallback<ViewDataBinding>() {

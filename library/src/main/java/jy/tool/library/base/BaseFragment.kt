@@ -22,18 +22,20 @@ import java.lang.reflect.ParameterizedType
  * @version :
  *</pre>
  */
-open abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Fragment(), View.OnClickListener {
+open abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Fragment(),
+    View.OnClickListener {
     protected var binding: T? = null
     protected var viewModel: VM? = null
     private var viewModelId: Int = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         if (binding == null) {
             binding = DataBindingUtil.inflate(
-                inflater
-                , initContentView(inflater, container, savedInstanceState)
-                , container
-                , false
+                inflater, initContentView(inflater, container, savedInstanceState), container, false
             )
         }
         return binding?.root
@@ -46,6 +48,11 @@ open abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Frag
         registorUIChangeLiveDataCallBack()
         initData()
         initListener()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding?.unbind()
     }
 
     /**
@@ -80,22 +87,22 @@ open abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Frag
 
     private fun registorUIChangeLiveDataCallBack() {
         (viewModel as BaseViewModel).lifecycle = lifecycle
-        (viewModel as BaseViewModel).startActivityEvent.observe(viewLifecycleOwner,
+        (viewModel as BaseViewModel).startActivityData.observe(viewLifecycleOwner,
             Observer {
                 val clz = it[BaseViewModel.ParameterField.CLASS] as Class<*>
                 val bundle = it[BaseViewModel.ParameterField.BUNDLE] as Bundle?
                 startActivity(clz, bundle)
             })
-        (viewModel as BaseViewModel).showDialogEvent.observe(viewLifecycleOwner, Observer {
+        (viewModel as BaseViewModel).showDialogData.observe(viewLifecycleOwner, Observer {
             showDialog(it)
         })
-        (viewModel as BaseViewModel).dismissDialogEvent.observe(viewLifecycleOwner, Observer {
+        (viewModel as BaseViewModel).dismissDialogData.observe(viewLifecycleOwner, Observer {
             dismissDialog()
         })
-        (viewModel as BaseViewModel).onbackpressDialogEvent.observe(viewLifecycleOwner, Observer {
+        (viewModel as BaseViewModel).onbackpressDialogData.observe(viewLifecycleOwner, Observer {
             activity?.onBackPressed()
         })
-        (viewModel as BaseViewModel).clickEvent.observe(viewLifecycleOwner, Observer {
+        (viewModel as BaseViewModel).clickData.observe(viewLifecycleOwner, Observer {
             processClick(it)
         })
     }
@@ -137,7 +144,11 @@ open abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel> : Frag
      * @return 布局layout的id
     */
      */
-    abstract fun initContentView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): Int
+    abstract fun initContentView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): Int
 
     /**
      * 初始数据
